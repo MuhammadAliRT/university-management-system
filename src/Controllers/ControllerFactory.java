@@ -23,6 +23,7 @@ public class ControllerFactory
 
 	}});
 	
+
 	public static StandardController getInstance()
 	{
 		String typeName = StartView.startMenu();
