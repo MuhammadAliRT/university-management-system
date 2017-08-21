@@ -8,36 +8,30 @@ import Views.StartView;
 
 public class ControllerFactory 
 {
-	private interface Factory
-	{
-		StandardController create();
-	}
-	
-	private static final Map<String, Factory> factoryMap =Collections.unmodifiableMap(new HashMap<String, Factory>()
-	{{
-		put("Student", new Factory(){ public StandardController create() { return new StudentController();}});
-		put("Teacher", new Factory(){ public StandardController create() { return new TeacherController();}});
-		put("Courses", new Factory(){ public StandardController create() { return new CourseController();}});
-		put("StudentsCourses", new Factory(){ public StandardController create() { return new StudentsCoursesController();}});
-		put("TeachersCourses", new Factory(){ public StandardController create() { return new TeachersCoursesController();}});
-
-	}});
-	
-
 	public static StandardController getInstance()
 	{
 		String typeName = StartView.startMenu();
 		System.out.println();
 
-		Factory fact = factoryMap.get(typeName);
-		
-		if(fact!=null)
-		{
-			return fact.create();
+		Class<?> classType;
+		try {
+			classType = Class.forName(typeName);
+			Object obj = classType.newInstance();
+			StandardController controllerObj = (StandardController)obj;
+			return controllerObj;
+			
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		
 		return null;
 	}
-
 }
+
 

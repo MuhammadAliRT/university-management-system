@@ -17,23 +17,23 @@ public class StartView {
 		{
 			case 1:
 			{
-				return "Student";
+				return "Controllers.StudentController";
 			}
 			case 2:
 			{
-				return "Teacher";
+				return "Controllers.TeacherController";
 			}
 			case 3:
 			{
-				return "Courses";
+				return "Controllers.CourseController";
 			}
 			case 4:
 			{
-				return "StudentsCourses";
+				return "Controllers.StudentsCoursesController";
 			}
 			case 5:
 			{
-				return "TeachersCourses";
+				return "Controllers.TeachersCoursesController";
 			}
 		}
 		return "";
